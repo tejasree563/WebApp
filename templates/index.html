@@ -5,153 +5,89 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #e0f7fa, #f1f8e9);
-            color: #333;
-            padding: 20px;
+            padding: 30px;
+            background-color: #f3f3f3;
         }
-
+        .container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 0px 0px 12px rgba(0,0,0,0.1);
+        }
+        input, select {
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            cursor: pointer;
+        }
         h2 {
             text-align: center;
-            color: #00796b;
         }
-
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 128, 128, 0.2);
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        input[type="submit"] {
-            margin-top: 20px;
-            background-color: #00796b;
-            color: white;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #004d40;
-        }
-
-        h3 {
-            text-align: center;
-            margin-top: 30px;
-        }
-
         .result {
-            font-size: 1.5em;
-            padding: 10px;
-            display: inline-block;
-            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
             font-weight: bold;
-        }
-
-        .will-churn {
-            color: #b71c1c;
-            background-color: #ffebee;
-            border: 2px solid #e53935;
-        }
-
-        .will-not-churn {
-            color: #1b5e20;
-            background-color: #e8f5e9;
-            border: 2px solid #43a047;
         }
     </style>
 </head>
 <body>
-    <h2>Customer Churn Prediction</h2>
-    <form method="post">
-        <label>Age:</label>
-        <input type="number" name="Age" required>
-
-        <label>Gender:</label>
-        <select name="Gender" required>
-            <option>Male</option>
-            <option>Female</option>
-        </select>
-
-        <label>Annual Income (USD):</label>
-        <input type="number" name="Annual_Income_USD" step="0.01" required>
-
-        <label>Spending Score (1–100):</label>
-        <input type="number" name="Spending_Score" required>
-
-        <label>Membership Status:</label>
-        <select name="Membership_Status" required>
-            <option>Bronze</option>
-            <option>Silver</option>
-            <option>Gold</option>
-        </select>
-
-        <label>Preferred Payment Method:</label>
-        <select name="Preferred_Payment_Method" required>
-            <option>Credit Card</option>
-            <option>Debit Card</option>
-            <option>PayPal</option>
-            <option>Cryptocurrency</option>
-        </select>
-
-        <label>Region:</label>
-        <select name="Region" required>
-            <option>North</option>
-            <option>South</option>
-            <option>East</option>
-            <option>West</option>
-            <option>Central</option>
-        </select>
-
-        <label>Total Purchases:</label>
-        <input type="number" name="Total_Purchases" required>
-
-        <label>Average Purchase Value:</label>
-        <input type="number" name="Avg_Purchase_Value" step="0.01" required>
-
-        <label>Satisfaction Score (0.0–5.0):</label>
-        <input type="number" name="Satisfaction_Score" step="0.1" required>
-
-        <label>Website Visits Last Month:</label>
-        <input type="number" name="Website_Visits_Last_Month" required>
-
-        <label>Avg Time per Visit (minutes):</label>
-        <input type="number" name="Avg_Time_Per_Visit_Minutes" step="0.1" required>
-
-        <label>Support Tickets (Last 6 Months):</label>
-        <input type="number" name="Support_Tickets_Last_6_Months" required>
-
-        <label>Number of Referred Friends:</label>
-        <input type="number" name="Referred_Friends" required>
-
-        <input type="submit" value="Predict Churn">
-    </form>
-
-    {% if prediction %}
-        <h3>Prediction:
-            {% if prediction == 'Will Churn' %}
-                <span class="result will-churn">{{ prediction }}</span>
-            {% elif prediction == 'Will Not Churn' %}
-                <span class="result will-not-churn">{{ prediction }}</span>
-            {% endif %}
-        </h3>
-    {% endif %}
+    <div class="container">
+        <h2>Customer Churn Prediction</h2>
+        <form method="POST">
+            <input name="Age" placeholder="Age" required>
+            <select name="Gender" required>
+                <option disabled selected>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            <input name="Annual_Income_USD" placeholder="Annual Income (USD)" required>
+            <input name="Spending_Score" placeholder="Spending Score (1-100)" required>
+            <select name="Membership_Status" required>
+                <option disabled selected>Select Membership</option>
+                <option>Bronze</option>
+                <option>Silver</option>
+                <option>Gold</option>
+            </select>
+            <select name="Preferred_Payment_Method" required>
+                <option disabled selected>Select Payment Method</option>
+                <option>Credit Card</option>
+                <option>Debit Card</option>
+                <option>PayPal</option>
+                <option>Cryptocurrency</option>
+            </select>
+            <select name="Region" required>
+                <option disabled selected>Select Region</option>
+                <option>North</option>
+                <option>South</option>
+                <option>East</option>
+                <option>West</option>
+                <option>Central</option>
+            </select>
+            <input name="Total_Purchases" placeholder="Total Purchases" required>
+            <input name="Avg_Purchase_Value" placeholder="Average Purchase Value" required>
+            <input name="Satisfaction_Score" placeholder="Satisfaction Score (0-10)" required>
+            <input name="Website_Visits_Last_Month" placeholder="Website Visits Last Month" required>
+            <input name="Avg_Time_Per_Visit_Minutes" placeholder="Average Time Per Visit (min)" required>
+            <input name="Support_Tickets_Last_6_Months" placeholder="Support Tickets Last 6 Months" required>
+            <input name="Referred_Friends" placeholder="Referred Friends" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction %}
+            <div class="result">Prediction: {{ prediction }}</div>
+        {% endif %}
+    </div>
 </body>
 </html>
